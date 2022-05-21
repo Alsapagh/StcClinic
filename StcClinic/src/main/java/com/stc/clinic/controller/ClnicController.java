@@ -39,7 +39,7 @@ public class ClnicController {
         return iAppointmnetService.addNewAppointment(appointmentDetails);
     }
 
-    @ApiOperation(value = "Responsible for CAncelling  an Appointments and loog reason", response = InboxResponse.class, responseContainer = "List")
+    @ApiOperation(value = "Responsible for Cancelling  an Appointments and loog reason", response = InboxResponse.class, responseContainer = "List")
     @RequestMapping(method = RequestMethod.POST, value = "/addNewAppointment", produces = PageAttributes.MediaType.APPLICATION_JSON_VALUE)
     public void getProductsTypes(
             @RequestParam() CancelationReasons cancelationReasons,
