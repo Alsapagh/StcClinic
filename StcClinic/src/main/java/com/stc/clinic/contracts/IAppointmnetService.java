@@ -1,6 +1,7 @@
 package com.stc.clinic.contracts;
 
 import com.stc.clinic.enums.CancelationReasons;
+import com.stc.clinic.requests.AppointmentDetails;
 import com.stc.clinic.responses.Appointment;
 
 import java.util.Date;

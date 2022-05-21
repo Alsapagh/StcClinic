@@ -1,11 +1,11 @@
 package com.stc.clinic.controller;
 
 import com.stc.clinic.contracts.IAppointmnetService;
-import com.stc.clinic.requests.appointmentDetails;
+import com.stc.clinic.enums.CancelationReasons;
+import com.stc.clinic.requests.AppointmentDetails;
 import com.stc.clinic.responses.Appointment;
-import com.stc.clinic.responses.Appointments;
-import sun.security.util.SecurityConstants;
-import org.springframework.web.bind.annotation;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 import java.awt.*;
 import java.util.List;
@@ -14,7 +14,7 @@ import java.util.List;
  * 5/21/2022
  * CREATED BY @Ayman Alsapagh
  **/
-@RestController
+@RestController("/api")
 public class ClnicController {
 
     @Autowired
@@ -33,9 +33,22 @@ public class ClnicController {
     @ApiOperation(value = "Responsible for getting  all Today's Appointments of Doctor", response = InboxResponse.class, responseContainer = "List")
     @RequestMapping(method = RequestMethod.POST, value = "/addNewAppointment", produces = PageAttributes.MediaType.APPLICATION_JSON_VALUE)
     public Appointment getProductsTypes(
-            @RequestBody() appointmentDetails appointmentDetails,
+            @RequestBody() AppointmentDetails appointmentDetails
+    ) {
+
+        return iAppointmnetService.addNewAppointment(appointmentDetails);
+    }
+
+    @ApiOperation(value = "Responsible for CAncelling  an Appointments and loog reason", response = InboxResponse.class, responseContainer = "List")
+    @RequestMapping(method = RequestMethod.POST, value = "/addNewAppointment", produces = PageAttributes.MediaType.APPLICATION_JSON_VALUE)
+    public void getProductsTypes(
+            @RequestParam() CancelationReasons cancelationReasons,
+            @RequestParam() Long appointmentId,
             @RequestParam(required = true, name = "pageSize", defaultValue = "10") Integer pageSize) {
 
-        return iAppointmnetService.(page, pageSize);
+        iAppointmnetService.cancelAppoitment(cancelationReasons, appointmentId);
     }
+
+
+
 }
